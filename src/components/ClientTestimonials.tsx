@@ -3,36 +3,39 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import InfiniteSlideText from './InfiniteSlideText';
+import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 
 const ClientTestimonials = () => {
   const testimonials = [
     {
       id: 1,
       rating: 5,
-      text: "From start to finish, working with Blue Rhino was a breeze. Their attention to detail and commitment to delivering a top-notch product set them apart in the field of the industry.",
-      name: "Raymond Bobbins",
+      text: "From concept to execution, Blue Rhino Media exceeded our expectations at every step. Our new website has been instrumental in driving bookings and enhancing guest satisfaction.",
+      name: "Raymond Boldines",
       title: "General Manager"
     },
     {
       id: 2,
       rating: 5,
-      text: "I can't say enough positive things about the seamless and exceptional process they used. Our new website has been a life-changer in driving more bookings and enhancing our brand.",
-      name: "Raymond Bobbins",
+      text: "Working with Blue Rhino Media was a game-changer for our hotel. Their attention to detail and creative approach helped us stand out in a crowded market.",
+      name: "Raymond Boldines",
       title: "General Manager"
     },
     {
       id: 3,
       rating: 5,
-      text: "From concept to execution, everything was wonderful and exceptional almost dirty. Our new website has been a life-changer in driving more bookings and enhancing our brand image.",
-      name: "Raymond Bobbins",
+      text: "From concept to execution, Blue Rhino Media exceeded our expectations at every step. Our new website has been instrumental in driving bookings and enhancing guest satisfaction.",
+      name: "Raymond Boldines",
       title: "General Manager"
     },
     {
       id: 4,
       rating: 5,
       text: "The team at Blue Rhino exceeded all expectations. Their expertise and dedication transformed our online presence completely.",
-      name: "Sarah Mitchell",
-      title: "CEO"
+      name: "Raymond Boldines",
+      title: "General Manager"
     }
   ];
 
@@ -55,17 +58,37 @@ const ClientTestimonials = () => {
     );
   };
 
-  return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-blue-50 to-white py-16 md:py-24">
-      <div className="container mx-auto px-4">
-        {/* Large Background Text */}
-        <div className="mb-16 text-center">
-          <h2 className="text-5xl font-bold leading-tight text-blue-100 sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl">
-            CLIENT TESTIMONIALS
-          </h2>
-        </div>
+  const sectionVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.6 },
+  },
+};
 
-        {/* Testimonials Slider */}
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.16, 1, 0.3, 1] as const,
+    },
+  },
+};
+
+
+  return (
+    <motion.section 
+    className="relative overflow-hidden bg-[#E1E9FF] py-4"
+    variants={sectionVariants}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.35 }}
+    >
+      <div className="container mx-auto px-4">
+        <InfiniteSlideText text="CLIENT TESTIMONIALS" />
         <div className="relative mx-auto max-w-6xl">
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
@@ -99,7 +122,10 @@ const ClientTestimonials = () => {
           >
             {testimonials.map((testimonial) => (
               <SwiperSlide key={testimonial.id}>
-                <div className="h-full rounded-2xl bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl">
+                <motion.div 
+                  className="h-full rounded-2xl bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl"
+                 variants={cardVariants}
+                >
                   {/* Star Rating */}
                   {renderStars(testimonial.rating)}
 
@@ -117,7 +143,7 @@ const ClientTestimonials = () => {
                       {testimonial.title}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               </SwiperSlide>
             ))}
           </Swiper>
@@ -156,7 +182,7 @@ const ClientTestimonials = () => {
           </button>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
