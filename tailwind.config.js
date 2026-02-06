@@ -22,6 +22,9 @@ export default {
           xl: '1280px',
           '2xl': '1400px',
         },
+        fontFamily: {
+          sans: ["Outfit", "system-ui", "sans-serif"],
+        },
       },
     },
   },
