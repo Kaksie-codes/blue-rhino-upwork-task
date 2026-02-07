@@ -90,7 +90,7 @@ const itemVariants: Variants = {
 
   return (
     <motion.section     
-    className="bg-white py-16 md:py-24"
+    className="bg-white py-8 mt"
     variants={sectionVariants}
     initial="hidden"
     whileInView="visible"
@@ -98,7 +98,7 @@ const itemVariants: Variants = {
     >
       <div className="container mx-auto px-4">
         {/* Website Benefits Section */}
-        <div className="mb-20 md:mb-28">
+        <div className="mb-12">
           <motion.h2 
             className="mb-12 text-center text-3xl font-bold text-gray-900 md:mb-16 md:text-4xl"
              variants={itemVariants}
