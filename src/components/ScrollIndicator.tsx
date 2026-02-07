@@ -2,7 +2,7 @@ const ScrollIndicator = () => {
   return (
     <button 
       onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
-      className="absolute bottom-0 right-4 group flex h-16 w-10 items-center justify-center rounded-full border-2 border-white/50 backdrop-blur-sm transition-all duration-300 hover:border-white hover:bg-white/10"
+      className="absolute bottom-4 lg:bottom-8 right-4 group flex h-16 w-10 items-center justify-center rounded-full border-2 border-white/50 backdrop-blur-sm transition-all duration-300 hover:border-white hover:bg-white/10"
       aria-label="Scroll down"
     >
       <svg 
